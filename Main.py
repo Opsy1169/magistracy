@@ -1,17 +1,17 @@
 from Plotter import *
 from DataUtil import *
 
+from mpl_toolkits.mplot3d import axes3d
+import matplotlib.pyplot as plt
+from matplotlib import cm
 
+plt.show()
 
 if __name__ == "__main__":
-    zernike_surface = get_zernike_data(zern_3_1, -2, 2, 151)
+    zernike_surface = get_zernike_data(zern_9_3_1, -2, 2, 151)
     zernike_surface = make_data_circle(zernike_surface)
-    exponential_zernike = make_exponential(zernike_surface)
-    exponential_zernike = np.fft.fft2(exponential_zernike)
-    exponential_zernike = np.fft.fftshift(exponential_zernike, (0, 1))
-    exponential_zernike = make_data_abs(exponential_zernike)
 
-    x = np.linspace(-2, 2, 151)
-    y = np.linspace(-2, 2, 151)
-    checkPlot(x, y, zernike_surface)
-    checkPlot(x, y, exponential_zernike)
+    aberration = perform_fft(zernike_surface)
+
+    plot(zernike_surface)
+    plot(aberration)

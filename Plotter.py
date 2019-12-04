@@ -1,13 +1,18 @@
-import cmath
-
-import numpy as np
 import matplotlib.pyplot as plt
-from DataUtil import *
-from  ZernikeFunctions import *
-from mpl_toolkits.mplot3d import Axes3D
+
+from ZernikeFunctions import *
 
 
-def checkPlot(x: np.ndarray, y: np.ndarray, values: np.ndarray):
+def plot(values: np.ndarray):
+    plt.axis('off')
+    fig = plt.imshow(values, cmap=plt.cm.binary)
+    fig.axes.get_xaxis().set_visible(False)
+    fig.axes.get_yaxis().set_visible(False)
+    plt.savefig('pict.png', bbox_inches='tight', pad_inches=0)
+    plt.show()
+
+
+def old_plot_method(x: np.ndarray, y: np.ndarray, values: np.ndarray):
     x, y = np.meshgrid(x, y)
 
     fig = plt.figure()
