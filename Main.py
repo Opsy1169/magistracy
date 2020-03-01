@@ -1,17 +1,16 @@
-from Plotter import *
-from DataUtil import *
+from numpy.random import rand
 
-from mpl_toolkits.mplot3d import axes3d
-import matplotlib.pyplot as plt
-from matplotlib import cm
+from DataUtil import *
+from Plotter import *
 
 plt.show()
 
 if __name__ == "__main__":
-    zernike_surface = get_zernike_data(zern_9_3_1, -2, 2, 151)
-    zernike_surface = make_data_circle(zernike_surface)
-
+    tic = time.time()
+    coeffs = rand(15)
+    print(coeffs)
+    zernike_surface = get_zernike_data(coeffs, -2, 2, 151)
     aberration = perform_fft(zernike_surface)
-
-    plot(zernike_surface)
     plot(aberration)
+    toc = time.time()
+    print(toc - tic)
